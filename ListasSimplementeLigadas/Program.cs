@@ -10,7 +10,28 @@ namespace ListasSimplementeLigadas
     {
         static void Main(string[] args)
         {
-            Nodo nodo = new Nodo();
+
+            Lista lista = new Lista();
+            Console.WriteLine(lista.Recorrer());
+            lista.Agregar("Uno");
+            lista.Agregar("Dos");
+            Console.WriteLine(lista.Recorrer());
+            lista.AgregarInicio("Cero");
+            Console.WriteLine(lista.Recorrer());
+            Nodo NodoBusqueda = lista.Buscar("Uno");
+            Console.WriteLine(NodoBusqueda.Valor);
+
+     
+
+
+
+
+
+
+
+
+
+            Console.Read();
         }
     }
 }
