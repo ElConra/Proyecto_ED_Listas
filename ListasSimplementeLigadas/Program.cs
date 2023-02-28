@@ -18,10 +18,30 @@ namespace ListasSimplementeLigadas
             Console.WriteLine(lista.Recorrer());
             lista.AgregarInicio("Cero");
             Console.WriteLine(lista.Recorrer());
-            Nodo NodoBusqueda = lista.Buscar("Uno");
-            Console.WriteLine(NodoBusqueda.Valor);
 
-     
+            Nodo NodoBusquedaAnterior = lista.BuscarAnterior("Uno");
+            if (NodoBusquedaAnterior != null)
+            {
+                Console.WriteLine(NodoBusquedaAnterior.Valor);
+            }
+            else
+            {
+                Console.WriteLine("No encontrado!");
+            }
+
+
+            Nodo NodoBusquedaSiguiente = lista.BuscarSiguiente("Uno");
+            if (NodoBusquedaSiguiente != null)
+            {
+                Console.WriteLine(NodoBusquedaSiguiente.Valor);
+            }
+            else
+            {
+                Console.WriteLine("No encontrado!");
+            }
+
+
+
 
 
 

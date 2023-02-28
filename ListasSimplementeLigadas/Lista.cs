@@ -12,7 +12,7 @@ namespace ListasSimplementeLigadas
         Nodo nodoActual;
         public Lista()
         {
-            nodoInicial= new Nodo();
+            nodoInicial = new Nodo();
         }
         public bool ValidaVacio()
         {
@@ -47,7 +47,7 @@ namespace ListasSimplementeLigadas
                 nodoActual = nodoActual.Siguiente;
             }
             Nodo nodoNuevo = new Nodo(valor);
-            nodoActual.Siguiente= nodoNuevo;
+            nodoActual.Siguiente = nodoNuevo;
         }
         public Nodo Buscar(string valor)
         {
@@ -59,11 +59,11 @@ namespace ListasSimplementeLigadas
             while (nodoActual.Siguiente != null)
             {
                 nodoActual = nodoActual.Siguiente;
-                if (nodoActual.Valor==valor)
+                if (nodoActual.Valor == valor)
                 {
                     return nodoActual;
                 }
-                
+
             }
             return null;
         }
@@ -93,6 +93,7 @@ namespace ListasSimplementeLigadas
             }
             return null;
         }
+
 
         public void BorrarNodo(string valor)
         {
