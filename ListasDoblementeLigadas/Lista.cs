@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ListasSimplementeLigadas
+namespace ListasDoblementeLigadas
 {
     internal class Lista
     {
@@ -21,7 +21,7 @@ namespace ListasSimplementeLigadas
                 return true;
             }
             return false;
-            //return nodoInicial.Siguiente == null;
+
 
         }
         public void VaciarLista()
