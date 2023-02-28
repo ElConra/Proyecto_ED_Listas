@@ -13,20 +13,21 @@ namespace ListasCirculares
         public Lista()
         {
             nodoInicial = new Nodo();
+            nodoInicial.Siguiente = nodoInicial;
         }
         public bool ValidaVacio()
         {
-            if (nodoInicial.Siguiente == null)
+            if (nodoInicial.Siguiente == nodoInicial)
             {
                 return true;
             }
             return false;
-            //return nodoInicial.Siguiente == null;
+
 
         }
         public void VaciarLista()
         {
-            nodoInicial.Siguiente = null;
+            nodoInicial.Siguiente = nodoInicial;
         }
         public string Recorrer()
         {
@@ -46,7 +47,7 @@ namespace ListasCirculares
             {
                 nodoActual = nodoActual.Siguiente;
             }
-            Nodo nodoNuevo = new Nodo(valor);
+            Nodo nodoNuevo = new Nodo(valor, nodoInicial);
             nodoActual.Siguiente = nodoNuevo;
         }
         public Nodo Buscar(string valor)
@@ -56,7 +57,7 @@ namespace ListasCirculares
                 return null;
             }
             nodoActual = nodoInicial;
-            while (nodoActual.Siguiente != null)
+            while (nodoActual.Siguiente != nodoInicial)
             {
                 nodoActual = nodoActual.Siguiente;
                 if (nodoActual.Valor == valor)
@@ -70,8 +71,8 @@ namespace ListasCirculares
 
         public void AgregarInicio(string valor)
         {
-            nodoActual = nodoInicial;
-            Nodo nuevoNodo = new Nodo(valor, nodoActual.Siguiente);
+
+            Nodo nuevoNodo = new Nodo(valor, nodoInicial.Siguiente);
             nodoActual.Siguiente = nuevoNodo;
         }
 
@@ -81,7 +82,7 @@ namespace ListasCirculares
             {
                 Nodo nodoBusqueda = nodoInicial;
 
-                while (nodoBusqueda.Siguiente != null
+                while (nodoBusqueda.Siguiente != nodoInicial
                             && nodoBusqueda.Siguiente.Valor != valor)
                 {
                     nodoBusqueda = nodoBusqueda.Siguiente;
@@ -104,8 +105,14 @@ namespace ListasCirculares
                 if (nodoActual != null)
                 {
                     Nodo nodoAnterior = BuscarAnterior(valor);
+                    if (!(nodoAnterior is null))
+                    {
+
                     nodoAnterior.Siguiente = nodoActual.Siguiente;
                     nodoActual.Siguiente = null;
+                    
+                    }
+
                 }
             }
         }
