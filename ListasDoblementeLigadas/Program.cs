@@ -10,6 +10,24 @@ namespace ListasDoblementeLigadas
     {
         static void Main(string[] args)
         {
+
+            Lista doble= new Lista();
+
+            Console.WriteLine(doble.Recorrer());
+            doble.AgregarFinal("Uno");
+            doble.AgregarFinal("Dos");
+            Console.WriteLine(doble.Recorrer());
+            doble.AgregarInicio("Cero");
+            doble.AgregarFinal("Tres");
+            Console.WriteLine(doble.Recorrer());
+            Console.WriteLine(doble.Buscar("Tres").Valor);
+            Console.WriteLine();
+            doble.BorrarNodo("Dos");
+            Console.WriteLine(doble.Recorrer());
+
+
+            Console.ReadLine();
+
         }
     }
 }
