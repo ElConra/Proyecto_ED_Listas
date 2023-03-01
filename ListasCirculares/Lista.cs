@@ -33,7 +33,7 @@ namespace ListasCirculares
         {
             string datos = string.Empty;
             nodoActual = nodoInicial;
-            while (nodoActual.Siguiente != null)
+            while (nodoActual.Siguiente != nodoInicial)
             {
                 nodoActual = nodoActual.Siguiente;
                 datos += nodoActual.Valor + "\n";
@@ -43,7 +43,7 @@ namespace ListasCirculares
         public void Agregar(string valor)
         {
             nodoActual = nodoInicial;
-            while (nodoActual.Siguiente != null)
+            while (nodoActual.Siguiente != nodoInicial)
             {
                 nodoActual = nodoActual.Siguiente;
             }
@@ -72,8 +72,9 @@ namespace ListasCirculares
         public void AgregarInicio(string valor)
         {
 
+
             Nodo nuevoNodo = new Nodo(valor, nodoInicial.Siguiente);
-            nodoActual.Siguiente = nuevoNodo;
+            nodoInicial.Siguiente = nuevoNodo;
         }
 
         public Nodo BuscarAnterior(string valor)
@@ -89,14 +90,17 @@ namespace ListasCirculares
                     if (nodoBusqueda.Siguiente.Valor == valor)
                     {
                         return nodoBusqueda;
+ 
                     }
+
+   
                 }
             }
             return null;
         }
 
 
-        public void BorrarNodo(string valor)
+        public Nodo BorrarNodo(string valor)
         {
             if (ValidaVacio() == false)
             {
@@ -105,16 +109,17 @@ namespace ListasCirculares
                 if (nodoActual != null)
                 {
                     Nodo nodoAnterior = BuscarAnterior(valor);
-                    if (!(nodoAnterior is null))
+                    if (nodoAnterior != null)
                     {
 
-                    nodoAnterior.Siguiente = nodoActual.Siguiente;
-                    nodoActual.Siguiente = null;
-                    
+                        nodoAnterior.Siguiente = nodoActual.Siguiente;
+                        nodoActual.Siguiente = null;
                     }
 
                 }
             }
+            return null;
         }
+
     }
 }
