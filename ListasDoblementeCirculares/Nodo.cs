@@ -13,7 +13,7 @@ namespace ListasDoblementeCirculares
 
         public Nodo Anterior { get; set; }
 
-        public Nodo(string valor = "", Nodo siguiente = null, Nodo anterior = null)
+        public Nodo(string valor = "", Nodo anterior = null, Nodo siguiente = null)
         {
             Valor = valor;
             Siguiente = siguiente;

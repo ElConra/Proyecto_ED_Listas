@@ -10,6 +10,29 @@ namespace ListasDoblementeCirculares
     {
         static void Main(string[] args)
         {
+            Lista dobleCircular = new Lista();
+            dobleCircular.ValidaVacio();
+
+            dobleCircular.AgregarFinal("Uno");
+            Console.WriteLine(dobleCircular.Recorrer());
+            dobleCircular.AgregarFinal("Dos");
+            Console.WriteLine(dobleCircular.Recorrer());
+            dobleCircular.AgregarInicio("Cero");
+            Console.WriteLine(dobleCircular.Recorrer());
+            dobleCircular.BorrarNodo("Cero");
+            Console.WriteLine(dobleCircular.Recorrer());
+            dobleCircular.VaciarLista();
+            Console.WriteLine(dobleCircular.Recorrer());
+
+
+
+
+
+            Console.ReadKey();
+
+
+
+
         }
     }
 }

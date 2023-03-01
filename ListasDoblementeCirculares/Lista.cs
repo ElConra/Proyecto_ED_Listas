@@ -18,7 +18,9 @@ namespace ListasDoblementeCirculares
         {
             if (nodoInicial.Siguiente == null)
             {
+                Console.WriteLine("Esta Vacio");
                 return true;
+
             }
             return false;
 
@@ -32,20 +34,33 @@ namespace ListasDoblementeCirculares
         public string Recorrer()
         {
             string datos = string.Empty;
-            nodoActual = nodoInicial;
-            while (nodoActual.Siguiente != nodoInicial)
+            if (ValidaVacio() == true)
             {
-                nodoActual = nodoActual.Siguiente;
-                datos += nodoActual.Valor + "\n";
+                Console.WriteLine("La lista esta vacia");
+            }
+            else
+            {
+   
+                nodoActual = nodoInicial;
+                while (nodoActual.Siguiente != nodoInicial)
+                {
+                    nodoActual = nodoActual.Siguiente;
+                    datos += nodoActual.Valor + "\n";
+                }
+                
             }
             return datos;
-
-
         }
 
 
         public void AgregarFinal(string valor)
         {
+            if (ValidaVacio() == true)
+            {
+                AgregarInicio(valor);
+                return;
+            }
+
             nodoActual = nodoInicial;
             while (nodoActual.Siguiente != nodoInicial)
             {
@@ -58,14 +73,19 @@ namespace ListasDoblementeCirculares
 
         public void AgregarInicio(string valor)
         {
-            if (ValidaVacio())
+            if (ValidaVacio() == true)
             {
-                AgregarFinal(valor);
-                return;
+                Nodo nuevoNodo = new Nodo(valor, nodoInicial, nodoInicial);
+                nodoInicial.Siguiente = nuevoNodo;
+                nodoInicial.Anterior = nuevoNodo;
             }
-            Nodo nuevoNodo = new Nodo(valor, nodoInicial, nodoInicial.Siguiente);
-            nodoInicial.Siguiente.Anterior = nuevoNodo;
-            nodoInicial.Siguiente = nuevoNodo;
+            else
+            {
+                Nodo nuevoNodo = new Nodo(valor, nodoInicial, nodoInicial.Siguiente);
+                nodoInicial.Siguiente.Anterior = nuevoNodo;
+                nodoInicial.Siguiente = nuevoNodo;
+            }
+
         }
         public Nodo Buscar(string valor)
         {
