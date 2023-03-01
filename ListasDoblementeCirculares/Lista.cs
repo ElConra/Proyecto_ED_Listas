@@ -12,7 +12,7 @@ namespace ListasDoblementeCirculares
         Nodo nodoActual;
         public Lista()
         {
-            nodoInicial = new Nodo();
+            nodoInicial = new Nodo(anterior: nodoInicial, siguiente: nodoInicial);
         }
         public bool ValidaVacio()
         {
@@ -26,13 +26,14 @@ namespace ListasDoblementeCirculares
         }
         public void VaciarLista()
         {
-            nodoInicial.Siguiente = null;
+            nodoInicial.Siguiente = nodoInicial;
+            nodoInicial.Anterior = nodoInicial;
         }
         public string Recorrer()
         {
             string datos = string.Empty;
             nodoActual = nodoInicial;
-            while (nodoActual.Siguiente != null)
+            while (nodoActual.Siguiente != nodoInicial)
             {
                 nodoActual = nodoActual.Siguiente;
                 datos += nodoActual.Valor + "\n";
@@ -46,12 +47,13 @@ namespace ListasDoblementeCirculares
         public void AgregarFinal(string valor)
         {
             nodoActual = nodoInicial;
-            while (nodoActual.Siguiente != null)
+            while (nodoActual.Siguiente != nodoInicial)
             {
                 nodoActual = nodoActual.Siguiente;
             }
-            Nodo nodoNuevo = new Nodo(valor, nodoActual);
+            Nodo nodoNuevo = new Nodo(valor, nodoActual, nodoInicial);
             nodoActual.Siguiente = nodoNuevo;
+            nodoInicial.Anterior = nodoNuevo;
         }
 
         public void AgregarInicio(string valor)
@@ -61,7 +63,7 @@ namespace ListasDoblementeCirculares
                 AgregarFinal(valor);
                 return;
             }
-            Nodo nuevoNodo = new Nodo(valor, nodoInicial,nodoInicial.Siguiente);
+            Nodo nuevoNodo = new Nodo(valor, nodoInicial, nodoInicial.Siguiente);
             nodoInicial.Siguiente.Anterior = nuevoNodo;
             nodoInicial.Siguiente = nuevoNodo;
         }
@@ -72,7 +74,7 @@ namespace ListasDoblementeCirculares
                 return null;
             }
             nodoActual = nodoInicial;
-            while (nodoActual.Siguiente != null)
+            while (nodoActual.Siguiente != nodoInicial)
             {
                 nodoActual = nodoActual.Siguiente;
                 if (nodoActual.Valor == valor)
@@ -84,44 +86,19 @@ namespace ListasDoblementeCirculares
             return null;
         }
 
-
-
-        public Nodo BuscarAnterior(string valor)
-        {
-            if (ValidaVacio() == false)
-            {
-                Nodo nodoBusqueda = nodoInicial;
-
-                while (nodoBusqueda.Siguiente != null
-                            && nodoBusqueda.Siguiente.Valor != valor)
-                {
-                    nodoBusqueda = nodoBusqueda.Siguiente;
-                    if (nodoBusqueda.Siguiente.Valor == valor)
-                    {
-                        return nodoBusqueda;
-                    }
-                }
-            }
-            return null;
-        }
-
-
         public void BorrarNodo(string valor)
         {
 
-                nodoActual = Buscar(valor);
+            nodoActual = Buscar(valor);
 
-                if (nodoActual != null)
-                {
+            if (nodoActual != null)
+            {
                 nodoActual.Anterior.Siguiente = nodoActual.Siguiente;
-                if (nodoActual.Siguiente != null)
-                {
-                    nodoActual.Siguiente.Anterior = nodoActual.Anterior;
-                }
-                    nodoActual.Siguiente=null;
-                    nodoActual.Anterior=null;
-                }
-            
+                nodoActual.Siguiente.Anterior = nodoActual.Anterior;
+                nodoActual.Siguiente = null;
+                nodoActual.Anterior = null;
+            }
+
         }
     }
 }
